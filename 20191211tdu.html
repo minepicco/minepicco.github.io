@@ -107,7 +107,7 @@
 					</section>
 					<section data-background="img/virtmerit.png" data-background-size="80%">
 						<div style="position: fixed; top: 10px; left: 10px">仮想化がもたらした業務効率の改善</div>
-						<div class="fragment" style="position: fixed; bottom: 10px; left: 10px; background-color: #fff; border-style: solid; border-color: #000; color: #000;">サーバ購入、ネットワーク利用申請など、数週間に及ぶプロセスが、仮想化によって数時間で完結する時代に！
+						<div class="fragment" style="position: fixed; bottom: 10px; left: 10px; background-color: #fff; border-style: solid; border-color: #000; color: #000;">サーバ購入、ネットワーク利用申請など、数週間に及ぶプロセスが、仮想化によって数時間で完結する時代に！</div>
 </div>
 					</section>
 				</section>
@@ -139,16 +139,16 @@
 				<section>
 					<section data-markdown>
 						### 1. dockerのインストール
-							① システムのUpdate 
+							1−1. システムのUpdate 
 							$ sudo apt-get update
 
-							② dockerをインストール
+							1-2. dockerをインストール
 							$ sudo apt-get install docker.io
 
-							③ ログインユーザーをdockerグループに追加
+							1-3. ログインユーザーをdockerグループに追加
 							$ sudo gpasswd -a $USER docker
 
-							④ 再起動
+							1-4. 再起動
 							$ sudo reboot
 					
 						#### 前提条件
@@ -158,14 +158,14 @@
 				<section>
 					<section data-markdown>
 						### 2. [docker hub](https://hub.docker.com/)
-							① docker hubへのアクセス 
+							2-1. docker hubへのアクセス 
 							https://hub.docker.com/
 						
-							② アカウントを作成
+							2-2. アカウントを作成
 
-							③ アプリケーション検索
+							2-3. アプリケーション検索
 
-							④ tagの考え方
+							2-4. tagの考え方
 					
 					</section>
 					<section data-background="img/signup_dh.png" data-background-size="80%">
@@ -184,20 +184,21 @@
 				<section>
 					<section data-markdown>
 						### 3. dockerの基本コマンド
-							① dockerの起動中のコンテナ一覧出力
+							3-1. dockerの起動中のコンテナ一覧出力
 							$ docker ps 
 
-							② 停止中も含めたdockerコンテナの一覧出力
+							3-2. 停止中も含めたdockerコンテナの一覧出力
 							$ docker ps –a
 
-							③ ローカルにあるdockerイメージの一覧を出力
+							3-3. ローカルにあるdockerイメージの一覧を出力
 							$ docker images
 						#### ハンズオン環境へのアクセス
 						[Docker Playground(https://labs.play-with-docker.com/)](https://labs.play-with-docker.com/)
 
 					</section>
-					<section data-background="img/signup_dh.png" data-background-size="80%">
-						<div style="position: fixed; top:10px; left:10px">アカウント作成1</div>
+					<section data-markdown>
+						### docker ps
+							
 					</section>
 					<section data-background="img/signup_dh2.png" data-background-size="50%">
 						<div style="position: fixed; top:10px; left:10px">アカウント作成2</div>
