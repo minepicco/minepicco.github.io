@@ -156,7 +156,7 @@
 				</section>
 				<section>
 					<section data-markdown>
-						### 2. [docker hub](https://hub.docker.com/)
+						### 2. docker hub
 							2-1. docker hubへのアクセス 
 							https://hub.docker.com/
 						
@@ -168,6 +168,10 @@
 					
 					</section>
 					<section>
+						<div>dockr hubにアクセスする</div>
+						<a href="https://hub.docker.com/" width="_blank">https://hub.docker.com/</a>
+					</section>
+					section>
 						<div>アカウント作成1</div>
 						<img src="img/signup_dh.png" width="80%">
 					</section>
@@ -212,7 +216,16 @@
 				</section>
 				<section>
 					<section>
-						
+						<h3>wordpressを構築する</h3>
+						<p>1. MySQLのデプロイ</p>
+						<p>2. Wordpressのデプロイ</p>
+					</section>
+					<section>
+						<h3>1. MySQLのデプロイ</h3>
+						<p>以下のコマンドでインストール</p>
+						<pre>docker run --name ＜任意の名前＞ -v ＜任意のボリューム＞:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=＜任意のパスワード＞ -p ＜任意のポート＞:3306 -d mysql:＜任意のタグ＞</pre>
+						<p>例</p>
+						<pre>docker run --name mysql -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=Macnica123 -p 3306:3306 -d mysql:5.6</pre>
 					</section>
 				</section>
 
