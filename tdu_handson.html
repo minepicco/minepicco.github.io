@@ -236,18 +236,88 @@
 							6. wordpressコンテナのログを見る
 							   $ docker logs wordpress
 					</section>
+				</section>
+				<section>
 					<section data-markdown>
-						### その他よく使うdockerコマンドの例
-						※ 末尾の[dockerコマンド一覧]()もあわせて参照
-						
-							docker pull <イメージ名>  ## 外部レジストリからイメージを取得
-							docker run <イメージ名>   ## イメージからdockerを起動
-							docker logs <コンテナID>  ## dockerコンテナのログを出力
-							docker exec <コンテナID>  ## dockerコンテナの中にログイン
-							docker stop <コンテナID>  ## 起動中のdockerコンテナを停止
-							docker start <コンテナID> ## 停止中のdockerコンテナを起動
-							docker rm <コンテナID>    ## dockerコンテナを削除
-							docker rmi <イメージ名>   ## ローカルのdockerイメージを削除
+						### 7. dockerコンテナの中にログインする
+							1. 起動中のdockerコンテナ一覧出力
+							   $ docker ps 
+							2. wordpressコンテナにログインしてみる
+							   $ docker exec -it wordpress /bin/bash
+							3. wordpressコンテナからログアウトする
+							   $ exit
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						### 7. dockerコンテナの停止と削除
+							1. 起動中のdockerコンテナ一覧出力
+							   $ docker ps 
+							2. wordpressコンテナを停止
+							   $ docker stop wordpress
+							3. wordpressコンテナを削除
+							   $ docker rm wordpress
+							4. wordpressコンテナが削除されたことを確認
+							   $ docker ps -a
+					</section>
+					<section data-markdown>
+						### MySQLコンテナも削除する
+							1. 起動中のdockerコンテナ一覧出力
+							   $ docker ps 
+							2. MySQLコンテナを停止
+							   $ docker stop mysql
+							3. MySQLコンテナを削除
+							   $ docker rm mysql
+							4. MySQLコンテナが削除されたことを確認
+							   $ docker ps -a
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						### 8. dockerイメージの削除
+							1. ホストにあるdockerイメージの一覧出力
+							   $ docker images
+							2. wordpressイメージを削除
+							   $ docker rmi wordpress:latest
+							3. MySQLイメージを削除
+							   $ docker rmi mysql:5.6
+							4. イメージが削除されたことを確認
+							   $ docker images
+					</section>
+					<section data-markdown>
+						### Mysqlのイメージも削除
+							1. 起動中のdockerコンテナ一覧出力
+							   $ docker ps 
+							2. MySQLコンテナを停止
+							   $ docker stop mysql
+							3. MySQLコンテナを削除
+							   $ docker rm mysql
+							4. MySQLコンテナが削除されたことを確認
+							   $ docker ps -a
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						### 9. docker-compose
+							1. ホストにあるdockerイメージの一覧出力
+							   $ docker images
+							2. wordpressイメージを削除
+							   $ docker rmi wordpress:latest
+							3. MySQLイメージを削除
+							   $ docker rmi mysql:5.6
+							4. イメージが削除されたことを確認
+							   $ docker images
+					</section>
+					<section data-markdown>
+						### Mysqlのイメージも削除
+							1. 起動中のdockerコンテナ一覧出力
+							   $ docker ps 
+							2. MySQLコンテナを停止
+							   $ docker stop mysql
+							3. MySQLコンテナを削除
+							   $ docker rm mysql
+							4. MySQLコンテナが削除されたことを確認
+							   $ docker ps -a
 					</section>
 				</section>
 				<section>
