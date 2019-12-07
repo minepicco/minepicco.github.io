@@ -159,11 +159,14 @@
 						### その他よく使うdockerコマンドの例
 						※ 末尾の[dockerコマンド一覧]()もあわせて参照
 						
-							docker pull    ## 外部レジストリからイメージを取得
-							docker run    ## イメージからdockerを起動
-							docker stop    ## 起動中のdockerコンテナを停止
-							docker rm    ## dockerコンテナを削除
-							docker rmi      ## ローカルのdockerイメージを削除
+							docker pull <イメージ名>  ## 外部レジストリからイメージを取得
+							docker run <イメージ名>   ## イメージからdockerを起動
+							docker logs <コンテナID>  ## dockerコンテナのログを出力
+							docker exec <コンテナID>  ## dockerコンテナの中にログイン
+							docker stop <コンテナID>  ## 起動中のdockerコンテナを停止
+							docker start <コンテナID> ## 停止中のdockerコンテナを起動
+							docker rm <コンテナID>    ## dockerコンテナを削除
+							docker rmi <イメージ名>   ## ローカルのdockerイメージを削除
 					</section>
 				</section>
 				<section>
