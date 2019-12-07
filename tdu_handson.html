@@ -148,7 +148,7 @@
 				<section>
 					<section data-markdown>
 						### 4. Dockerの基本コマンド
-							1. dockerの起動中のコンテナ一覧出力
+							1. 起動中のdockerコンテナ一覧出力
 							   $ docker ps 
 							2. 停止中も含めたdockerコンテナの一覧出力
 							   $ docker ps -a
@@ -171,7 +171,7 @@
 				</section>
 				<section>
 					<section data-markdown>
-						### wordpressを構築する
+						### 5. wordpressのシステムを構築する
 							1. MySQLのデプロイ
 						
 							2. Wordpressのデプロイ
@@ -220,7 +220,36 @@
 						<img src="img/wp5.png" width="80%">
 					</section>
 				</section>
-				
+				<section>
+					<section data-markdown>
+						### 6. Dockerのコマンドを試す
+							1. 起動中のdockerコンテナ一覧出力
+							   $ docker ps 
+							2. wordpressコンテナを停止する
+							   $ docker stop wordpress
+							3. 停止中も含めたdockerコンテナの一覧出力
+							   $ docker ps -a
+							4. ローカルにあるdockerイメージの一覧を出力
+							   $ docker images
+							5. wordpressコンテナを起動しなおす
+							   $ docker start wordpress
+							6. wordpressコンテナのログを見る
+							   $ docker logs wordpress
+					</section>
+					<section data-markdown>
+						### その他よく使うdockerコマンドの例
+						※ 末尾の[dockerコマンド一覧]()もあわせて参照
+						
+							docker pull <イメージ名>  ## 外部レジストリからイメージを取得
+							docker run <イメージ名>   ## イメージからdockerを起動
+							docker logs <コンテナID>  ## dockerコンテナのログを出力
+							docker exec <コンテナID>  ## dockerコンテナの中にログイン
+							docker stop <コンテナID>  ## 起動中のdockerコンテナを停止
+							docker start <コンテナID> ## 停止中のdockerコンテナを起動
+							docker rm <コンテナID>    ## dockerコンテナを削除
+							docker rmi <イメージ名>   ## ローカルのdockerイメージを削除
+					</section>
+				</section>
 				<section>
 					<h2>Pretty Code</h2>
 					<pre><code class="hljs" data-trim data-line-numbers="4,8-11">
