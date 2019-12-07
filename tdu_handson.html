@@ -147,6 +147,27 @@
 				</section>
 				<section>
 					<section data-markdown>
+						### 4. Dockerの基本コマンド
+							1. dockerの起動中のコンテナ一覧出力
+							   $ docker ps 
+							2. 停止中も含めたdockerコンテナの一覧出力
+							   $ docker ps –a
+							3. ローカルにあるdockerイメージの一覧を出力
+							   $ docker images
+					</section>
+					<section>
+						### その他よく使うdockerコマンドの例
+							※ 末尾の[dockerコマンド一覧]()もあわせて参照
+						
+							docker pull    ## 外部レジストリからイメージを取得
+							docker run    ## イメージからdockerを起動
+							docker stop    ## 起動中のdockerコンテナを停止
+							docker rm    ## dockerコンテナを削除
+							docker rmi      ## ローカルのdockerイメージを削除
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
 						### wordpressを構築する
 							1. MySQLのデプロイ
 						
@@ -164,7 +185,7 @@
 						<h4>以下のコマンドでインストール</h4>
 						<div style="font-size: 16pt;">docker run --name ＜任意の名前＞ -e WORDPRESS_DB_HOST=＜MySQLのホスト名 or IP＞:＜MySQLのポート＞ -e WORDPRESS_DB_USER=＜任意のDBユーザー＞ -e WORDPRESS_DB_PASSWORD=＜任意のDB＞ -p ＜任意のポート＞:80 -d wordpress:＜任意のタグ＞</div>
 						<h4>例:</h4>
-						<div style="font-size: 16pt;">docker run --name wordpress -e WORDPRESS_DB_HOST=<b><span style="font-color:#FF0000 !important;"><i>192.168.0.13</i></span></b>:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Macnica123 -p 80:80 -d wordpress:latest</div></div>
+						<div style="font-size: 16pt;">docker run --name wordpress -e WORDPRESS_DB_HOST=<b><span style="background-color:#FF0000 !important;"><i>192.168.0.13</i></span></b>:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Macnica123 -p 80:80 -d wordpress:latest</div></div>
 					</section>
 						<section>
 						<div align=left><h3>2. Wordpressのデプロイ(2/2)</h3>
@@ -172,8 +193,7 @@
 						<textarea rows="3" cols="80" style="font-size:16pt;">docker run --name wordpress -e WORDPRESS_DB_HOST=192.168.0.13:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Macnica123 -p 80:80 -d wordpress:latest</textarea></div>
 					</section>
 				</section>
-
-
+				
 				<section>
 					<h2>Pretty Code</h2>
 					<pre><code class="hljs" data-trim data-line-numbers="4,8-11">
