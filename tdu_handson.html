@@ -308,7 +308,7 @@
 						### docker composeとは
 							docker composeとは、YAMLと呼ばれるフィル形式で
 							定義された構成情報をもとに、一つまたは複数の
-							dockerコンテナを一括で起動する仕組みです
+							dockerコンテナを一括で起動する仕組みです。
 					</section>
 					<section data-markdown>
 						### docker-compose.ymlファイルを作成する
@@ -316,8 +316,9 @@
 							   $ vi docker-compose.yml
 							2. 「i」キーを押して編集モードに入る
 							3. 下のページにあるファイルの内容をコピーして貼り付ける
-							4. 「ESC」キーを押して編集モードを終了する
-							5. 「:」キーを推してから「wq」とタイプして保存/終了する
+							4. 「WORDPRESS_DB_HOST」のアドレスを自分の環境に変更する
+							5. 「ESC」キーを押して編集モードを終了する
+							6. 「:」キーを推してから「wq」とタイプして保存/終了する
 					</section>
 					<section>
 						<h3>docker-compose.yml</h3>
@@ -341,140 +342,99 @@ services:
       - "80:80"
     restart: always
     environment:
-      WORDPRESS_DB_HOST: 192.168.0.8:3306
+      WORDPRESS_DB_HOST: 192.168.0.13:3306
       WORDPRESS_DB_PASSWORD: Macnica123
-					</code></pre>
+						</code></pre>
 					</section>
-				
+					<section data-markdown>
+						### docker composeを起動する
+							$ docker-compose up
+						### docker composeを終了する
+							$ docker-compose down
+					</section>
+				</section>
 				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
+					<section data-markdown>
+						### 10. 自分のdockerイメージをビルドする
+							1. 概要
+							2. index.htmlファイルを作成する
+							3. Dockerfileを作成する
+							4. dockerイメージをビルドする
+							5. ビルドしたイメージを起動する
+							6. ビルドしたイメージをDocker HubにPushする
+					</section>
+					<section data-markdown>
+						### 概要
+							dockerイメージは比較的簡単に自分自身で作ることが可能です。
+							Dockerfileと呼ばれるファイルを作成して、ビルドコマンド
+							を実行すると、自分のイメージが作成できます。
+							作成したイメージは、自分のDocker Hubで公開することが可能です。
+					</section>
+					<section data-markdown>
+						### index.htmlファイルを作成する
+							1. index.htmlファイルの作成
+							   $ vi index.html
+							2. 「i」キーを押して編集モードに入る
+							3. 下のページにあるファイルの内容をコピーして貼り付ける
+							4. 必要に応じて中のテキストを編集する
+							5. 「ESC」キーを押して編集モードを終了する
+							6. 「:」キーを推してから「wq」とタイプして保存/終了する
+					</section>
+					<section>
+						<h3>index.html</h3>
+						<pre><code class="hljs" data-trim data-line-numbers="4,8-11">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TDUテストページ</title>
+  </head>
+  <body>
+    <h1>[[ Hello TDU Students!]]</h1>
+    <h2>[[ TDU学生の皆様、こんにちは!]]</h2>
+  </body>
+</html>
+						</code></pre>
+					</section>
+					<section data-markdown>
+						### Dockerfileを作成する
+							1. Dockerfileファイルの作成
+							   $ vi Dockerfile
+							2. 「i」キーを押して編集モードに入る
+							3. 下のページにあるファイルの内容をコピーして貼り付ける
+							4. 必要に応じて中のテキストを編集する
+							5. 「ESC」キーを押して編集モードを終了する
+							6. 「:」キーを推してから「wq」とタイプして保存/終了する
+					</section>
+					<section>
+						<h3>Dockerfile</h3>
+						<pre><code class="hljs" data-trim data-line-numbers="4,8-11">
+from nginx
 
+RUN apt-get update -y 
+COPY index.html /usr/share/nginx/html/
+RUN chmod +x /usr/share/nginx/html/index.html
+
+EXPOSE 80
+						</code></pre>
+					</section>
+					<section data-markdown>
+						### Dockerイメージをビルドする
+							$ docker build -t web:1.0 .
+						### ビルドしたイメージを起動する
+							$ docker run -p 80:80 -d web:1.0
+					</section>
+					<section data-markdown>
+						### ビルドしたイメージをDocker HubにPushする
+							1. イメージのタグ
+							   $ docker tag web:1.0 ＜Docker HubのID＞/web:1.0
+							2. Docker Hubへのログイン
+							   $ docker login
+							3. イメージのPush
+							   $ docker push ＜Docker HubのID＞/web:1.0
+					</section>
+				</section>
 				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
-
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="https://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+					FIN
 				</section>
 
 			</div>
