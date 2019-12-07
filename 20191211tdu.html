@@ -223,9 +223,16 @@
 					<section>
 						<div align=left>><h3>1. MySQLのデプロイ</h3>
 						<h4>以下のコマンドでインストール</h4>
-						<div>docker run --name ＜任意の名前＞ -v ＜任意のボリューム＞:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=＜任意のパスワード＞ -p ＜任意のポート＞:3306 -d mysql:＜任意のタグ＞</div>
-						<h4>例</h4>
+						<div border=1 size="80%">docker run --name ＜任意の名前＞ -v ＜任意のボリューム＞:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=＜任意のパスワード＞ -p ＜任意のポート＞:3306 -d mysql:＜任意のタグ＞</div>
+						<h4>例:</h4>
 						<div>docker run --name mysql -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=Macnica123 -p 3306:3306 -d mysql:5.6</div></div>
+					</section>
+					<section>
+						<div align=left>><h3>2. Wordpressのデプロイ</h3>
+						<h4>以下のコマンドでインストール</h4>
+						<div>docker run --name ＜任意の名前＞ -e WORDPRESS_DB_HOST=＜MySQLのホスト名 or IP＞:＜MySQLのポート＞ -e WORDPRESS_DB_USER=＜任意のDBユーザー＞ -e WORDPRESS_DB_PASSWORD=＜任意のDB＞ -p ＜任意のポート＞:80 -d wordpress:＜任意のタグ＞</div>
+						<h4>例:</h4>
+						<div>docker run --name wordpress -e WORDPRESS_DB_HOST=192.168.0.13:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Macnica123 -p 80:80 -d wordpress:latest</div></div>
 					</section>
 				</section>
 				<section>
