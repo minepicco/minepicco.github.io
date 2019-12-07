@@ -298,49 +298,54 @@
 				</section>
 				<section>
 					<section data-markdown>
-						### 9. docker-compose
-							1. ホストにあるdockerイメージの一覧出力
-							   $ docker images
-							2. wordpressイメージを削除
-							   $ docker rmi wordpress:latest
-							3. MySQLイメージを削除
-							   $ docker rmi mysql:5.6
-							4. イメージが削除されたことを確認
-							   $ docker images
+						### 9. docker compose
+							1. docker composeとは
+							2. docker-compose.ymlファイルを作成する
+							3. docker-composeを起動する
+							4. docker-composeを終了する
 					</section>
 					<section data-markdown>
-						### Mysqlのイメージも削除
-							1. 起動中のdockerコンテナ一覧出力
-							   $ docker ps 
-							2. MySQLコンテナを停止
-							   $ docker stop mysql
-							3. MySQLコンテナを削除
-							   $ docker rm mysql
-							4. MySQLコンテナが削除されたことを確認
-							   $ docker ps -a
+						### docker composeとは
+							docker composeとは、YAMLと呼ばれるフィル形式で
+							定義された構成情報をもとに、一つまたは複数の
+							dockerコンテナを一括で起動する仕組みです
 					</section>
-				</section>
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code class="hljs" data-trim data-line-numbers="4,8-11">
-import React, { useState } from 'react';
+					<section data-markdown>
+						### docker-compose.ymlファイルを作成する
+							1. docker-compose.ymlファイルの作成
+							   $ vi docker-compose.yml
+							2. 「i」キーを押して編集モードに入る
+							3. 下のページにあるファイルの内容をコピーして貼り付ける
+							4. 「ESC」キーを押して編集モードを終了する
+							5. 「:」キーを推してから「wq」とタイプして保存/終了する
+					</section>
+					<section>
+						<h3>docker-compose.yml</h3>
+						<pre><code class="hljs" data-trim data-line-numbers="4,8-11">
+version: '2'
+services:
+  db:
+    image: mysql:5.6
+    volumes:
+      - "/my/custom:/etc/mysql/conf.d"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Macnica123
 
-function Example() {
-  const [count, setCount] = useState(0);
-
-  return (
-    &lt;div&gt;
-      &lt;p&gt;You clicked {count} times&lt;/p&gt;
-      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
-        Click me
-      &lt;/button&gt;
-    &lt;/div&gt;
-  );
-}
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "80:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: 192.168.0.8:3306
+      WORDPRESS_DB_PASSWORD: Macnica123
 					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
+					</section>
+				
 				<section>
 					<h2>Marvelous List</h2>
 					<ul>
