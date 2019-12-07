@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>20191211 講義資料</title>
+
+		<meta name="description" content="">
+		<meta name="Minehiko Nohara" content="Macnica Solutions">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="https://www.macnica.net/image/favicon.ico" />
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/reveal.css">
+		<link rel="stylesheet" href="/css/theme/moon.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="/lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+                                <section>
+				        <h3>東京電機大学</br>コンテナ型仮想化</h3>
+				        <h5>2019/12/11</h5>
+                                        <h5>マクニカソリューションズ株式会社</h5>
+                                        <h5>Minehiko Nohara</h5>
+                                </section>
+				<section>
+					<section data-markdown>
+						# Agenda
+						### 1. 基本解説
+							- 仮想化の歴史
+							- コンテナの歴史と技術概要
+							- ユースケース 
+							- コンテナの課題
+
+						### 2. ハンズオン
+							- dockerインストールの解説
+							- 基本コマンド及びDocker Hubのアカウント作成
+							- dockerイメージのビルド
+					</section>
+        </section>
+				<section>
+					<section data-transition="slide" data-background="#faf0e6" data-background-transition="zoom">
+					<h1>ハンズオン</h1>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						### 1. dockerのインストール
+							1−1. システムのUpdate 
+							$ sudo apt-get update
+
+							1-2. dockerをインストール
+							$ sudo apt-get install docker.io
+
+							1-3. ログインユーザーをdockerグループに追加
+							$ sudo gpasswd -a $USER docker
+
+							1-4. 再起動
+							$ sudo reboot
+					
+						#### 前提条件
+							OS: Ubuntu16.04 LTS
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						### 2. docker hub
+							2-1. docker hubへのアクセス 
+							https://hub.docker.com/
+						
+							2-2. アカウントを作成
+
+							2-3. アプリケーション検索
+
+							2-4. tagの考え方
+					</section>
+					<section>
+						<div>dockr hubにアクセスする</div>
+						<a href="https://hub.docker.com/" target="_blank">https://hub.docker.com/</a>
+					</section>
+					<section>
+						<div>アカウント作成1</div>
+						<img src="img/signup_dh.png" width="80%">
+					</section>
+					<section>
+						<div >アカウント作成2</div>
+						<img src="img/signup_dh2.png" width="50%">
+					</section>
+					<section>
+						<div>アプリケーションの検索</div>
+						<img src="img/search_dh.png" width="80%">
+					</section>
+					<section>
+						<div>Tag</div>
+						<img src="img/tags_dh.png"width="80%">
+					</section>
+				</section>
+				<section>
+					<section>
+						<div>3. ハンズオン環境へのアクセス</div>
+						<a href="https://labs.play-with-docker.com/" target="_blank">https://labs.play-with-docker.com/</a>
+					</section>
+					<section>
+						<div>docker hubのアカウントでログイン</div>
+						<img src="img/dp1.png">	
+					</section>
+					<section>
+						<div>docker hubのアカウント情報を入力</div>
+						<img src="img/dp2.png">	
+					</section>
+					<section>
+						<div>「Start」をクリック</div>
+						<img src="img/dp3.png">	
+					</section>
+					<section>
+						<div>Docker Playgroundでホストを追加</div>
+						<img src="img/dp4.png">	
+					</section>
+					<section>
+						<div>準備完了</div>
+						<img src="img/dp5.png">	
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						### wordpressを構築する
+							1. MySQLのデプロイ
+						
+							2. Wordpressのデプロイ
+					</section>
+					<section>
+						<div align=left><h3>1. MySQLのデプロイ</h3>
+						<h4>以下のコマンドでインストール</h4>
+						<div border="1" size="-3">docker run --name ＜任意の名前＞ -v ＜任意のボリューム＞:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=＜任意のパスワード＞ -p ＜任意のポート＞:3306 -d mysql:＜任意のタグ＞</div>
+						<h4>例:</h4>
+						<div border="1" size="-3">docker run --name mysql -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=Macnica123 -p 3306:3306 -d mysql:5.6</div></div>
+					</section>
+					<section>
+						<div align=left><h3>2. Wordpressのデプロイ(1/3)</h3>
+						<h4>以下のコマンドでインストール</h4>
+						<div border="1" size=1>docker run --name ＜任意の名前＞ -e WORDPRESS_DB_HOST=＜MySQLのホスト名 or IP＞:＜MySQLのポート＞ -e WORDPRESS_DB_USER=＜任意のDBユーザー＞ -e WORDPRESS_DB_PASSWORD=＜任意のDB＞ -p ＜任意のポート＞:80 -d wordpress:＜任意のタグ＞</div>
+					</section>
+					<section>
+						<div align=left><h3>2. Wordpressのデプロイ(2/3)</h3>
+						<h4>例:</h4>
+						<div border="1" size=1>docker run --name wordpress -e WORDPRESS_DB_HOST=<b><span color="red"><i>192.168.0.13</i></span></b>:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Macnica123 -p 80:80 -d wordpress:latest</div></div>
+					</section>
+						<section>
+						<div align=left><h3>2. Wordpressのデプロイ(3/3)</h3>
+						<img src="img/dp5.png" width="50%"></br>
+						<textarea rows="3" cols="150" style="font-size:18pt;">docker run --name wordpress -e WORDPRESS_DB_HOST=192.168.0.13:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Macnica123 -p 80:80 -d wordpress:latest</textarea></div>
+					</section>
+				</section>
+
+
+				<section>
+					<h2>Pretty Code</h2>
+					<pre><code class="hljs" data-trim data-line-numbers="4,8-11">
+import React, { useState } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+					</code></pre>
+					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+				</section>
+
+				<section>
+					<h2>Marvelous List</h2>
+					<ul>
+						<li>No order here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Fantastic Ordered List</h2>
+					<ol>
+						<li>One is smaller than...</li>
+						<li>Two is smaller than...</li>
+						<li>Three!</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Tabular Tables</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Value</th>
+								<th>Quantity</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Apples</td>
+								<td>$1</td>
+								<td>7</td>
+							</tr>
+							<tr>
+								<td>Lemonade</td>
+								<td>$2</td>
+								<td>18</td>
+							</tr>
+							<tr>
+								<td>Bread</td>
+								<td>$3</td>
+								<td>2</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					<h2>Clever Quotes</h2>
+					<p>
+						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The nice thing about standards is that there are so many to choose from</q> and block:
+					</p>
+					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+					</blockquote>
+				</section>
+
+				<section>
+					<h2>Intergalactic Interconnections</h2>
+					<p>
+						You can link between slides internally,
+						<a href="#/2/3">like this</a>.
+					</p>
+				</section>
+
+				<section>
+					<h2>Speaker View</h2>
+					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
+					<p>Press the <em>S</em> key to try it out.</p>
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<section>
+					<h2>Export to PDF</h2>
+					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
+					<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+				</section>
+
+				<section>
+					<h2>Global State</h2>
+					<p>
+						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+						will be added as a class to the document element when the slide is open. This lets you
+						apply broader style changes, like switching the page background.
+					</p>
+				</section>
+
+				<section data-state="customevent">
+					<h2>State Events</h2>
+					<p>
+						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+					</p>
+					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+Reveal.addEventListener( 'customevent', function() {
+	console.log( '"customevent" has fired' );
+} );
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Take a Moment</h2>
+					<p>
+						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
+					</p>
+				</section>
+
+				<section>
+					<h2>Much more</h2>
+					<ul>
+						<li>Right-to-left support</li>
+						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
+						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
+						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
+						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
+					</ul>
+				</section>
+
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+						- <a href="https://slides.com">Try the online editor</a> <br>
+						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/plugin/highlight/highlight.js', async: true },
+					{ src: '/plugin/search/search.js', async: true },
+					{ src: '/plugin/zoom-js/zoom.js', async: true },
+					{ src: '/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
