@@ -275,31 +275,7 @@
 				</section>
 				<section>
 					<section data-markdown>
-						### 9. dockerイメージの削除
-							1. ホストにあるdockerイメージの一覧出力
-							   $ docker images
-							2. wordpressイメージを削除
-							   $ docker rmi wordpress:latest
-							3. MySQLイメージを削除
-							   $ docker rmi mysql:5.6
-							4. イメージが削除されたことを確認
-							   $ docker images
-					</section>
-					<section data-markdown>
-						### Mysqlのイメージも削除
-							1. 起動中のdockerコンテナ一覧出力
-							   $ docker ps 
-							2. MySQLコンテナを停止
-							   $ docker stop mysql
-							3. MySQLコンテナを削除
-							   $ docker rm mysql
-							4. MySQLコンテナが削除されたことを確認
-							   $ docker ps -a
-					</section>
-				</section>
-				<section>
-					<section data-markdown>
-						### 10. docker compose
+						### 9. docker compose
 							1. docker composeとは
 							2. docker-compose.ymlファイルを作成する
 							3. docker-composeを起動する
@@ -356,7 +332,7 @@ services:
 				</section>
 				<section>
 					<section data-markdown>
-						### 11. 自分のdockerイメージをビルドする
+						### 10. 自分のdockerイメージをビルドする
 							1. 概要
 							2. index.htmlファイルを作成する
 							3. Dockerfileを作成する
